@@ -20,4 +20,8 @@ class ApplicationController < ActionController::Base
     session[:account_id] = 1337
   end
 
+  def render_404 
+    render :text => '404 Not Found', :status => 404
+  end
+
 end
