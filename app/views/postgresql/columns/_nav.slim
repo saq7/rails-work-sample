@@ -1,3 +1,7 @@
 - secondary_nav do |nav|
+  = nav.item 'Databases', postgresql_databases_path,
+    icon: 'databases'
+  = nav.item 'Schemas', postgresql_database_schemas_path,
+    icon: 'databases'
   = nav.item 'Tables', postgresql_database_schema_tables_path,
-      icon: 'collections'
+    icon: 'collections'
