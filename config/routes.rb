@@ -5,9 +5,10 @@ Rails.application.routes.draw do
   scope '/:account_slug/deployments/:deployment_id' do
     namespace :postgresql do
       resources :databases, param: :name, only: [:index] do
-        resources :tables, only: [:index]
+        resources :tables, param: :name, only: [:index] do
+          resources :columns, param: :name, only: [:index]
+        end
       end
     end
   end
-
 end

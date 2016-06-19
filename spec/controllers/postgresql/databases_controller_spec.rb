@@ -9,4 +9,11 @@ RSpec.describe PostgreSQL::DatabasesController, type: :controller do
     end
   end
 
+  describe 'GET index' do
+    context 'existent deployment' do
+      before { get :index, account_slug: 'nice-co', deployment_id: 1234 }
+      it { expect(response.status).to eq(200) } 
+    end
+  end
+  
 end
