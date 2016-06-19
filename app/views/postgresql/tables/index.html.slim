@@ -1,5 +1,5 @@
-= render partial: 'postgresql/databases/header'
-= render partial: 'postgresql/databases/nav'
+= render partial: 'postgresql/tables/header'
+= render partial: 'postgresql/tables/nav'
 
 - main_header 'Tables'
 
@@ -9,6 +9,10 @@
       .table-head
         .table-row
           .table-cell name
+          .table-cell schema
       - tables.each do |table|
         .table-row
-          .table-cell = table.name
+          .table-cell
+            = link_to table.name, postgresql_database_schema_table_columns_path(table_name: table.name) 
+          .table-cell
+            = table.schema.name

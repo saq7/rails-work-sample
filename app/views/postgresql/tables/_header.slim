@@ -1,0 +1,6 @@
+ - page_header
+   h2
+     - breadcrumbs do |b|
+       = b.crumb current_deployment.name, postgresql_databases_path
+       = b.crumb current_database.name, postgresql_database_schemas_path
+       = b.crumb current_schema.name, postgresql_database_schema_tables_path

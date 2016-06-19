@@ -1,0 +1,18 @@
+= render partial: 'postgresql/columns/header'
+= render partial: 'postgresql/columns/nav'
+
+- main_header 'Columns'
+
+- main
+  .wide
+    .box-table
+      .table-head
+        .table-row
+          .table-cell name
+          .table-cell data type
+          .table-cell is nullable?
+      - columns.each do |column|
+        .table-row
+          .table-cell = column.name
+          .table-cell = column.data_type
+          .table-cell = column.is_nullable

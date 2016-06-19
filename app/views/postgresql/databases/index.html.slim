@@ -9,4 +9,4 @@
       - databases.each do |database|
         .table-row
           .table-cell
-            = link_to database.name, postgresql_database_tables_path(database_name: database.name)
+            = link_to database.name, postgresql_database_schemas_path(database_name: database.name)

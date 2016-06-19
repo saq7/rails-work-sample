@@ -1,0 +1,13 @@
+= render partial: 'postgresql/schemas/header'
+= render partial: 'postgresql/schemas/nav'
+
+- main_header 'Schemas'
+
+- main
+  .wide
+    .box-table
+      .table-head
+      - schemas.each do |schema|
+        .table-row
+          .table-cell
+            = link_to schema.name, postgresql_database_schema_tables_path(schema_name: schema.name)

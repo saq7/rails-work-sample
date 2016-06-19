@@ -6,22 +6,21 @@ class PostgreSQL::Database
   attribute :size, Integer
 
   def client
-    deployment.client(name)
+    deployment.client(name) 
   end
 
-  def tables
+  def schemas
     client.exec(<<-eos
       SELECT 
-        nspname AS schemaname,relname,reltuples
-      FROM pg_class C
-      LEFT JOIN pg_namespace N ON (N.oid = C.relnamespace)
+        distinct table_schema AS name
+      FROM information_schema.tables T
       WHERE 
-        nspname NOT IN ('pg_catalog', 'information_schema') AND
-        relkind='r' 
-      ORDER BY reltuples DESC;
+        table_schema NOT IN ('pg_catalog', 'information_schema');
     eos
     ).map do |row|
-      PostgreSQL::Table.new(name: row['relname'], rows_count: row['reltuples'], database: self, deployment: deployment)
+      PostgreSQL::Table.new(name: row['name'],
+                            deployment: deployment,
+                            database: self)
     end
   end
 
