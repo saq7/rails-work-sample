@@ -1,0 +1,6 @@
+= render partial 'postgresql/deployments/header'
+= render partial 'postgresql/deployments/nav'
+
+- tabs do |t|
+  = t.tab 'Databases', postgresql_databases_path
+  = t.tab 'Current Queries', postgresql_current_queries_path

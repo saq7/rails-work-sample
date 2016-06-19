@@ -1,0 +1,27 @@
+= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"
+= javascript_include_tag "current_queries.js"
+= render partial: 'postgresql/deployments/header'
+= render partial: 'postgresql/deployments/nav'
+
+- main_header 
+  - tabs do |t|
+    = t.tab 'Databases', postgresql_databases_path
+    = t.tab 'Current Queries', postgresql_current_queries_path
+
+- main
+  .wide
+    .box-table
+      .table-head
+        .table-row id="table-header"
+          .table-cell pid
+          .table-cell database
+          .table-cell start time
+          .table-cell query
+          .table-cell state
+      .table-body style="font-size:12px"   
+        .table-row id="table-row"
+          .table-cell data-pid=""
+          .table-cell data-dbname=""
+          .table-cell data-starttime=""
+          .table-cell data-query=""
+          .table-cell data-state=""

@@ -1,7 +1,11 @@
 = render partial: 'postgresql/databases/header'
 = render partial: 'postgresql/databases/nav'
 
-- main_header 'Databases'
+- main_header 
+  - tabs do |t|
+    = t.tab 'Databases', postgresql_databases_path
+    = t.tab 'Current Queries', postgresql_current_queries_path
+  
 
 - main
   .wide

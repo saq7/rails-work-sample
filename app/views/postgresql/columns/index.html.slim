@@ -1,7 +1,9 @@
 = render partial: 'postgresql/columns/header'
 = render partial: 'postgresql/columns/nav'
 
-- main_header 'Columns'
+- main_header
+  - tabs do |t|
+    = t.tab 'Columns', postgresql_database_schema_table_columns_path
 
 - main
   .wide

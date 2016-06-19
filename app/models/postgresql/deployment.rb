@@ -21,4 +21,23 @@ class PostgreSQL::Deployment < Deployment
     end
   end
 
+  def current_queries
+    client.exec(<<-eos
+      SELECT datname, pid, query_start, query, state
+      FROM pg_stat_activity
+      ORDER BY state asc, query_start asc;
+    eos
+    ).map do |row|
+        PostgreSQL::CurrentQuery.new(deployment: self,
+                                     pid: row['pid'],
+                                     start_time: row['query_start'],
+                                     query: row['query'],
+                                     state: row['state'],
+                                     database: PostgreSQL::Database.new(
+                                       name: row['datname'],
+                                       deployment: self
+                                     ))
+    end    
+  end
+  
 end
